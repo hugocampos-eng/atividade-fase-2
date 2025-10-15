@@ -7,7 +7,7 @@ for(p in pacotes){
 }
 
 
-caminho_csv <- "data_agro.csv"
+caminho_csv <- "../data/data_agro.csv"
 dados <- read.csv(caminho_csv, stringsAsFactors = FALSE, encoding = "UTF-8")
 
 
@@ -88,22 +88,22 @@ estatisticas <- data.frame(
 print(estatisticas)
 
 
-write.csv(estatisticas, file = "estatisticas_produtividade.csv", row.names = FALSE)
+write.csv(estatisticas, file = "../output/estatisticas_produtividade.csv", row.names = FALSE)
 
 
-png("histograma_produtividade.png", width = 800, height = 600)
+png("../output/histograma_produtividade.png", width = 800, height = 600)
 hist(x, breaks = 10, main = "Histograma da Produtividade (sacas/ha)",
      xlab = "Produtividade (sacas/ha)", probability = TRUE)
 lines(density(x, na.rm = TRUE))   # curva de densidade sobre o histograma
 dev.off()
 
 
-png("boxplot_produtividade.png", width = 600, height = 400)
+png("../output/boxplot_produtividade.png", width = 600, height = 400)
 boxplot(x, main = "Boxplot da Produtividade", ylab = "Produtividade (sacas/ha)")
 dev.off()
 
 
-png("qqplot_produtividade.png", width = 600, height = 400)
+png("../output/qqplot_produtividade.png", width = 600, height = 400)
 qqnorm(x, main = "QQ-Plot da Produtividade")
 qqline(x, col = "red")
 dev.off()
@@ -133,10 +133,10 @@ freq_tabela <- data.frame(
 print(freq_tabela)
 
 
-write.csv(freq_tabela, file = "frequencia_classificacao_safra.csv", row.names = FALSE)
+write.csv(freq_tabela, file = "../output/frequencia_classificacao_safra.csv", row.names = FALSE)
 
 
-png("barplot_classificacao_safra.png", width = 700, height = 500)
+png("../output/barplot_classificacao_safra.png", width = 700, height = 500)
 barplot(freq_abs, main = "Frequência da Classificação da Safra",
         ylab = "Contagem", xlab = "Classificação", ylim = c(0, max(freq_abs) + 5))
 text(x = seq_along(freq_abs), y = freq_abs, labels = freq_abs, pos = 3)
@@ -146,7 +146,7 @@ dev.off()
 p2 <- ggplot(dados, aes(x = Classificacao_da_Safra)) +
   geom_bar() +
   labs(title = "Contagem por Classificação da Safra", x = "Classificação", y = "Contagem")
-ggsave("ggplot_bar_classificacao_safra.png", plot = p2, width = 7, height = 5, dpi = 150)
+ggsave("../output/ggplot_bar_classificacao_safra.png", plot = p2, width = 7, height = 5, dpi = 150)
 
 
 cat("\n--- INTERPRETAÇÕES EXEMPLO ---\n")
